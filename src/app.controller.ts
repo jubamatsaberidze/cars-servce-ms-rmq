@@ -22,12 +22,7 @@ export class AppController {
       }),
     }),
   )
-  uploadFle(
-    req,
-    res,
-    @UploadedFile()
-    file: Express.Multer.File,
-  ): any {
-    this.appService.uploadFle(req, res, file);
+  uploadFle(@UploadedFile() file: Express.Multer.File): any {
+    this.appService.uploadFle(file);
   }
 }
