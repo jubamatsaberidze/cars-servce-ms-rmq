@@ -109,12 +109,4 @@ export class AppService {
     }
     return csvRows.join('\n');
   };
-
-  async download(filename: string, res) {
-    try {
-      return res.download(`download/${filename}`);
-    } catch (err) {
-      console.error(err);
-    }
-  }
 }
