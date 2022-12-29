@@ -1,4 +1,4 @@
 {
     "git.ignoreLimitWarning": true,
-    "dotenv.enableAutocloaking": false
+    "dotenv.enableAutocloaking": true
 }

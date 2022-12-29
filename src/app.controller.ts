@@ -8,7 +8,7 @@ import {
   CACHE_MANAGER,
   Inject,
   Param,
-  Res,
+  Logger,
 } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { AppService } from './app.service';
@@ -24,6 +24,7 @@ interface FileData {
 
 @Controller('file')
 export class AppController {
+  private readonly logger = new Logger(AppController.name);
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly appService: AppService,
@@ -54,14 +55,9 @@ export class AppController {
     return data;
   }
 
-  @Get('/:id')
+  @Get('/single-file/:id')
   async getRedisData(@Param('id') id: string) {
     const fileData = await this.cacheManager.get(id);
     return fileData;
-  }
-
-  @Get('download/:fileId')
-  async downlod(@Param('fileId') filename: string, @Res() response) {
-    return await this.appService.download(filename, response);
   }
 }
